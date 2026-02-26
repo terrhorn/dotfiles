@@ -1,0 +1,31 @@
+# Shared packages — installed on all machines
+#
+# Machine-specific packages are in Brewfile.personal or Brewfile.work
+
+tap "buo/cask-upgrade"
+
+brew "chezmoi"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "git-lfs"
+brew "httpie"
+brew "jq"
+brew "mas"
+brew "nvm"
+brew "pyenv"
+brew "shellcheck"
+brew "zsh"
+
+cask "1password-cli"
+cask "divvy"
+cask "docker-desktop"
+cask "iterm2"
+cask "microsoft-teams"
+cask "numi"
+cask "reader"
+cask "stats"
+cask "visual-studio-code"
+cask "visual-studio-code@insiders"
+
+mas "Trello", id: 1278508951

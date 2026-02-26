@@ -1,0 +1,5 @@
+{{- if .is_work }}
+.config/homebrew/Brewfile.personal
+{{- else }}
+.config/homebrew/Brewfile.work
+{{- end }}
