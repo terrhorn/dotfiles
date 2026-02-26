@@ -1,0 +1,18 @@
+# Work machine packages
+
+brew "act"
+brew "azure-cli"
+brew "git-sizer"
+brew "grep"
+brew "htop"
+brew "llama.cpp"
+brew "pipenv"
+brew "rbenv"
+brew "tfenv"
+brew "tmux"
+brew "whisper-cpp"
+
+cask "git-credential-manager"
+cask "logseq"
+cask "mac-mouse-fix"
+cask "usb-overdrive"
