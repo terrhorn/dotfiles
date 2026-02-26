@@ -1,3 +1,7 @@
+CLAUDE.md
+README.md
+LICENSE
+
 {{- if .is_work }}
 .config/homebrew/Brewfile.personal
 {{- else }}
