@@ -9,7 +9,6 @@ brew "llama.cpp"
 brew "pipenv"
 brew "rbenv"
 brew "tfenv"
-brew "tmux"
 brew "whisper-cpp"
 
 cask "git-credential-manager"

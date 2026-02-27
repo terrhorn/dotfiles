@@ -118,6 +118,9 @@ fi
 # ~/.agents/ Copilot permission wrapper
 export PATH="$HOME/.agents/bin:$PATH"
 
+# chezmoi-managed scripts
+export PATH="$HOME/.local/bin:$PATH"
+
 # bun completions
 [ -s "/Users/tlh/.bun/_bun" ] && source "/Users/tlh/.bun/_bun"
 
