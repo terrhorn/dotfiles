@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euo pipefail
+
+SOURCE_DIR="{{ .chezmoi.sourceDir }}/dot_config/homebrew"
+
+COMBINED="$(mktemp)"
+trap 'rm -f "$COMBINED"' EXIT
+
+cat "$SOURCE_DIR/Brewfile" > "$COMBINED"
+{{- if .is_work }}
+cat "$SOURCE_DIR/Brewfile.work" >> "$COMBINED"
+{{- else }}
+cat "$SOURCE_DIR/Brewfile.personal" >> "$COMBINED"
+{{- end }}
+
+echo "The following packages are not in your Brewfiles and would be removed:"
+echo ""
+
+if brew bundle cleanup --file="$COMBINED"; then
+  echo "Nothing to clean up."
+  exit 0
+fi
+
+echo ""
+read -rp "Remove them? [y/N] " answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  brew bundle cleanup --force --file="$COMBINED"
+  echo "Done."
+else
+  echo "Aborted."
+fi

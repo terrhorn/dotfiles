@@ -9,16 +9,20 @@ set -euo pipefail
 # machine: {{ include "dot_config/homebrew/Brewfile.personal" | sha256sum }}
 {{- end }}
 
-HOMEBREW_DIR="${HOME}/.config/homebrew"
+# Cache sudo credentials once; refresh in background so they don't expire
+sudo -v
+while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
+
+SOURCE_DIR="{{ .chezmoi.sourceDir }}/dot_config/homebrew"
 
 COMBINED="$(mktemp)"
 trap 'rm -f "$COMBINED"' EXIT
 
-cat "$HOMEBREW_DIR/Brewfile" > "$COMBINED"
+cat "$SOURCE_DIR/Brewfile" > "$COMBINED"
 {{- if .is_work }}
-cat "$HOMEBREW_DIR/Brewfile.work" >> "$COMBINED"
+cat "$SOURCE_DIR/Brewfile.work" >> "$COMBINED"
 {{- else }}
-cat "$HOMEBREW_DIR/Brewfile.personal" >> "$COMBINED"
+cat "$SOURCE_DIR/Brewfile.personal" >> "$COMBINED"
 {{- end }}
 
-brew bundle --no-lock --file="$COMBINED"
+brew bundle --file="$COMBINED"
