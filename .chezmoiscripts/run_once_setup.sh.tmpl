@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if .is_work }}
+LINK="$HOME/terrhorn/dotfiles"
+{{- else }}
+LINK="$HOME/code/dotfiles"
+{{- end }}
+
+mkdir -p "$(dirname "$LINK")"
+if [ ! -e "$LINK" ]; then
+  ln -s "$HOME/.local/share/chezmoi" "$LINK"
+  echo "Created symlink: $LINK → ~/.local/share/chezmoi"
+fi
