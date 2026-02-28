@@ -2,3 +2,9 @@ adjust-cell-height = 10%
 font-size = 16
 theme = Builtin Solarized Light
 window-save-state = always
+window-inherit-working-directory = true
+mouse-hide-while-typing = true
+copy-on-select = true
+quit-after-last-window-closed = true
+quick-terminal-position = top
+keybind = global:cmd+grave_accent=toggle_quick_terminal
