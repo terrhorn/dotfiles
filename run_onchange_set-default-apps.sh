@@ -3,10 +3,11 @@
 # run_onchange_ means chezmoi only re-runs this when the script contents change.
 
 swift - <<'SWIFT'
-import CoreServices
+import Foundation
+import UniformTypeIdentifiers
 
-let vscodeInsiders = "com.microsoft.VSCodeInsiders" as CFString
-let ghostty = "com.mitchellh.ghostty" as CFString
+let vscodeInsiders = "com.microsoft.VSCodeInsiders" as NSString as CFString
+let ghostty = "com.mitchellh.ghostty" as NSString as CFString
 
 // --- VS Code Insiders: text/code files ---
 let editorExtensions = [
@@ -16,11 +17,10 @@ let editorExtensions = [
 ]
 
 for ext in editorExtensions {
-    let uti = UTTypeCreatePreferredIdentifierForTag(
-        kUTTagClassFilenameExtension, ext as CFString, nil
-    )?.takeRetainedValue()
-    if let uti = uti {
-        LSSetDefaultRoleHandlerForContentType(uti, .all, vscodeInsiders)
+    if let uttype = UTType(filenameExtension: ext) {
+        LSSetDefaultRoleHandlerForContentType(
+            uttype.identifier as NSString as CFString, .all, vscodeInsiders
+        )
     }
 }
 
@@ -28,14 +28,13 @@ for ext in editorExtensions {
 let terminalExtensions = ["command", "tool"]
 
 for ext in terminalExtensions {
-    let uti = UTTypeCreatePreferredIdentifierForTag(
-        kUTTagClassFilenameExtension, ext as CFString, nil
-    )?.takeRetainedValue()
-    if let uti = uti {
-        LSSetDefaultRoleHandlerForContentType(uti, .all, ghostty)
+    if let uttype = UTType(filenameExtension: ext) {
+        LSSetDefaultRoleHandlerForContentType(
+            uttype.identifier as NSString as CFString, .all, ghostty
+        )
     }
 }
 
 // --- Ghostty: URL schemes ---
-LSSetDefaultHandlerForURLScheme("x-man-page" as CFString, ghostty)
+LSSetDefaultHandlerForURLScheme("x-man-page" as NSString as CFString, ghostty)
 SWIFT
