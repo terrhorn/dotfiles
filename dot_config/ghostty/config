@@ -6,4 +6,4 @@ mouse-hide-while-typing = true
 copy-on-select = true
 quit-after-last-window-closed = true
 quick-terminal-position = top
-keybind = global:cmd+backquote=toggle_quick_terminal
+keybind = global:cmd+shift+backquote=toggle_quick_terminal
