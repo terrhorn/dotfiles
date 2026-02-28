@@ -1,6 +1,7 @@
 # Personal machine packages
 
 brew "abseil"
+brew "gemini-cli"
 brew "c-ares"
 brew "go"
 brew "just"
@@ -35,6 +36,7 @@ cask "chatgpt"
 cask "chromium"
 cask "claude"
 cask "claude-code"
+cask "copilot-cli"
 cask "discord"
 cask "dropbox"
 cask "google-drive"
