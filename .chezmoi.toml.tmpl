@@ -7,7 +7,6 @@
   is_work = {{ $isWork }}
 {{- if $isWork }}
   email = {{ promptStringOnce . "email" "Work email address" | quote }}
-  gpg_key = {{ promptStringOnce . "gpg_key" "GPG signing key ID" | quote }}
 {{- else }}
   email = "terry.horner@protonmail.com"
   gpg_key = "A8B24094C4BB137F"
