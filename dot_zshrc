@@ -127,3 +127,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fzf shell integration (Ctrl-R history, Ctrl-T files, Alt-C cd)
+eval "$(fzf --zsh)"
