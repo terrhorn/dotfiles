@@ -5,6 +5,7 @@
 tap "buo/cask-upgrade"
 
 
+brew "bun"
 brew "chezmoi"
 brew "cmake"
 brew "fzf"
