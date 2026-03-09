@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>io.chezmoi.update</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/chezmoi</string>
+    <string>update</string>
+    <string>--no-tty</string>
+  </array>
+
+  <!-- Run every 4 hours (14400 seconds) -->
+  <key>StartInterval</key>
+  <integer>14400</integer>
+
+  <!-- Also run on login -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/chezmoi-update.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/chezmoi-update.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+</dict>
+</plist>
