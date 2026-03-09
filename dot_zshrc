@@ -129,4 +129,5 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # fzf shell integration (Ctrl-R history, Ctrl-T files, Alt-C cd)
+export FZF_CTRL_R_OPTS='--no-height'
 eval "$(fzf --zsh)"
