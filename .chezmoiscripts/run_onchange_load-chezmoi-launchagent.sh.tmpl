@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+# chezmoi re-runs this when the plist changes
+# plist: {{ include "Library/LaunchAgents/io.chezmoi.update.plist" | sha256sum }}
+
+PLIST="$HOME/Library/LaunchAgents/io.chezmoi.update.plist"
+DOMAIN="gui/$(id -u)"
+LABEL="io.chezmoi.update"
+
+if ! [ -f "$PLIST" ]; then
+  echo "Plist not found at $PLIST, skipping"
+  exit 0
+fi
+
+# Unload if already loaded (ignore errors if not loaded)
+launchctl bootout "$DOMAIN/$LABEL" 2>/dev/null || true
+
+# Load the agent
+launchctl bootstrap "$DOMAIN" "$PLIST"
+echo "Loaded $LABEL into $DOMAIN"
