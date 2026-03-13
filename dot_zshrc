@@ -128,6 +128,13 @@ export PATH="$HOME/.local/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Load SSH signing key into macOS agent (idempotent, reads key from git config)
+_signing_key=$(git config --global user.signingkey 2>/dev/null)
+if [[ -n "$_signing_key" ]]; then
+  ssh-add --apple-use-keychain "${_signing_key%.pub}" 2>/dev/null
+fi
+unset _signing_key
+
 # fzf shell integration (Ctrl-R history, Ctrl-T files, Alt-C cd)
 export FZF_CTRL_R_OPTS='--no-height'
 eval "$(fzf --zsh)"
