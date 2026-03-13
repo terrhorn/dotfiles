@@ -1,5 +1,5 @@
 font-size = 16
-theme = Builtin Solarized Light
+theme = iTerm2 Solarized Light
 window-save-state = always
 window-inherit-working-directory = true
 mouse-hide-while-typing = true
