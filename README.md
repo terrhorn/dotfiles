@@ -5,10 +5,17 @@ Dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 ## Bootstrap a new machine
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply terrhorn/dotfiles --ssh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply terrhorn/dotfiles
 ```
 
-This installs chezmoi, clones the repo, prompts for machine type (personal/work), applies all dotfiles, and runs `brew bundle`.
+This installs chezmoi, clones the repo via HTTPS, prompts for machine type (personal/work), applies all dotfiles, and runs `brew bundle`.
+
+Once SSH keys are set up, switch the remote to SSH for push access:
+
+```sh
+chezmoi cd
+git remote set-url origin git@github.com:terrhorn/dotfiles.git
+```
 
 ## Daily workflow
 
