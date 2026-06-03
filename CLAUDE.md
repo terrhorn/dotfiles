@@ -33,7 +33,7 @@ Split into three files under `dot_config/homebrew/`:
 | File | What varies |
 |---|---|
 | `dot_gitconfig.tmpl` | Email + signing key filename (per machine type) |
-| `dot_config/gh/config.yml.tmpl` | `git_protocol` (work: https, personal: ssh) + Slack extension (work only) |
+| `dot_config/gh/config.yml.tmpl` | Slack extension (work only) |
 | `private_dot_ssh/allowed_signers.tmpl` | Email + signing key (read from local filesystem at apply time via `output`) |
 
 ## Commit signing
