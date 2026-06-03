@@ -1,0 +1,3 @@
+# Remove the nanobanana gemini extension from all machines.
+# Source was deleted; this deletes the already-applied target copy on apply.
+.gemini/extensions/nanobanana
