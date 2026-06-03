@@ -1,8 +1,10 @@
 [user]
 	name = Terry Horner
 	email = {{ .email }}
-	signingkey = ~/.ssh/id_ed25519_signing.pub
+	signingkey = ~/.ssh/{{ .signing_key }}.pub
 [commit]
+	gpgsign = true
+[tag]
 	gpgsign = true
 [gpg]
 	format = ssh

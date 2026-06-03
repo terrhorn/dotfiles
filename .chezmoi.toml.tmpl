@@ -7,6 +7,8 @@
   is_work = {{ $isWork }}
 {{- if $isWork }}
   email = {{ promptStringOnce . "email" "Work email address" | quote }}
+  signing_key = "id_ed25519"
 {{- else }}
   email = "terry.horner@protonmail.com"
+  signing_key = "id_ed25519_signing"
 {{- end }}
