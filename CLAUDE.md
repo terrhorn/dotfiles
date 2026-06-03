@@ -32,13 +32,15 @@ Split into three files under `dot_config/homebrew/`:
 
 | File | What varies |
 |---|---|
-| `dot_gitconfig.tmpl` | Email (per machine type) |
+| `dot_gitconfig.tmpl` | Email + signing key filename (per machine type) |
 | `dot_config/gh/config.yml.tmpl` | Slack extension (work only) |
 | `private_dot_ssh/allowed_signers.tmpl` | Email + signing key (read from local filesystem at apply time via `output`) |
 
 ## Commit signing
 
-All machines use **SSH signing** (not GPG). Each machine needs `~/.ssh/id_ed25519_signing` — the `.gitconfig` and `allowed_signers` files reference this key. GPG was removed intentionally; don't re-introduce it.
+All machines use **SSH signing** (not GPG). The signing key filename is set per machine type via the `signing_key` data value in `.chezmoi.toml.tmpl` (personal: `id_ed25519_signing`; work: `id_ed25519`, reusing the auth key). The `.gitconfig` and `allowed_signers` templates reference `~/.ssh/{{ .signing_key }}`. That key must exist before `chezmoi diff`/`apply` — `allowed_signers.tmpl` reads its `.pub` at template time. GPG was removed intentionally; don't re-introduce it.
+
+> **Adding `signing_key` to an already-initialized machine:** plain `chezmoi apply` does not regenerate `~/.config/chezmoi/chezmoi.toml`, so re-run `chezmoi init` once to populate the new field before applying.
 
 ## What this repo does NOT manage
 
