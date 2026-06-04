@@ -1,7 +1,7 @@
-{{- $isWork := false -}}
-{{- if stdinIsATTY -}}
-{{-   $isWork = promptBoolOnce . "is_work" "Is this a work machine" -}}
-{{- end -}}
+{{- /* promptBoolOnce returns the stored value if set (safe non-interactive re-init);
+       otherwise prompts on a TTY, or accepts --promptBool "Is this a work machine=true"
+       non-interactively. No silent default — a fresh init with neither errors loudly. */ -}}
+{{- $isWork := promptBoolOnce . "is_work" "Is this a work machine" -}}
 
 [data]
   is_work = {{ $isWork }}
