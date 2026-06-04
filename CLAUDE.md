@@ -34,8 +34,8 @@ Split into three files under `dot_config/homebrew/`:
 | File | What varies |
 |---|---|
 | `dot_gitconfig.tmpl` | Email + signing key filename (per machine type) |
-| `dot_config/gh/config.yml.tmpl` | Slack extension (work only) |
 | `private_dot_ssh/allowed_signers.tmpl` | Email + signing key (read from local filesystem at apply time via `output`) |
+| `run_onchange_set-default-apps.sh.tmpl` | Default editor bundle ID (VS Code on work, VS Code Insiders on personal) |
 
 ## Commit signing
 

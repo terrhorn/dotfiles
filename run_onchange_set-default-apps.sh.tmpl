@@ -6,10 +6,10 @@ swift - <<'SWIFT'
 import Foundation
 import UniformTypeIdentifiers
 
-let vscodeInsiders = "com.microsoft.VSCodeInsiders" as NSString as CFString
+let editor = "{{ if .is_work }}com.microsoft.VSCode{{ else }}com.microsoft.VSCodeInsiders{{ end }}" as NSString as CFString
 let ghostty = "com.mitchellh.ghostty" as NSString as CFString
 
-// --- VS Code Insiders: text/code files ---
+// --- Editor: text/code files (VS Code on work, VS Code Insiders on personal) ---
 let editorExtensions = [
     "conf", "css", "html", "js", "json", "jsx", "md",
     "nix", "rs", "sh", "toml", "ts", "tsx", "txt",
@@ -19,7 +19,7 @@ let editorExtensions = [
 for ext in editorExtensions {
     if let uttype = UTType(filenameExtension: ext) {
         LSSetDefaultRoleHandlerForContentType(
-            uttype.identifier as NSString as CFString, .all, vscodeInsiders
+            uttype.identifier as NSString as CFString, .all, editor
         )
     }
 }
