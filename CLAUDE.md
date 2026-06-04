@@ -8,6 +8,7 @@ Two machine types: **personal** and **work**. Set once via `promptBoolOnce` in `
 
 - Personal: defaults hardcoded (no prompts beyond machine type)
 - Work: prompts for email
+- **Non-interactive init** (no TTY, e.g. under a tool/agent): pass the answers as flags, or it errors rather than silently defaulting — `chezmoi init terrhorn/dotfiles --ssh --promptBool "Is this a work machine=true" --promptString "Work email address=you@work.com"`. Re-running init on an already-configured machine reads the stored value and won't prompt.
 
 ## Conventions
 
